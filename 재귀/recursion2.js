@@ -20,3 +20,8 @@ function loopFactorial(num) {
 
   return total;
 }
+
+function recursionFatorial(num) {
+  if (num === 1) return 1;
+  return num * recursionFatorial(num - 1);
+}
