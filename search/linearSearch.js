@@ -15,7 +15,7 @@ function linearSearch(numArr, value) {
   return -1;
 };
 
-console.log(linearSearch([10,15,20,25,30], 15));
+console.log(linearSearch([10,15,20,25,30], 20));
 console.log(linearSearch([9,8,7,6,5,4,3,2,1,0], 10));
 
 
@@ -31,3 +31,7 @@ function linearSearch2(arr, val) {
 
 console.log(linearSearch2([10,15,20,25,30], 15));
 console.log(linearSearch2([9,8,7,6,5,4,3,2,1,0], 10));
+
+
+// 시간복잡도 최악 : O(n) -> 60개가 있을 경우, 연산 60번 수행. best : O(1)
+// 데이터가 분류되지 않았을 때 가장 적합한 방법.
