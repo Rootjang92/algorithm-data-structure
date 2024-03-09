@@ -40,8 +40,22 @@ function merge(arr1, arr2) {
 
 console.log(merge([1,10,50], [2,14,99,100]));
 
+// 대부분 재귀함수를 사용하여 진행함.
+// 배열을 계속 반으로 나누는 게 핵심.
+// slice -> recursion
 function mergeSort(arr) {
-  return arr;
+  if (arr.length <= 1) return arr;
+
+  let mid = Math.floor(arr.length / 2);
+  let leftSide = mergeSort(arr.slice(0, mid));
+  let rightSide = mergeSort(arr.slice(mid));
+  
+  return merge(leftSide, rightSide);
 };
 
-// console.log(mergeSort([]))
+console.log(mergeSort([10,24,76,73,72,1,9]));
+
+// O(nlogn) -> 8개의 배열이 1개로 return -> 1 - 2 - 4 - 8 (거꾸로 봤을 때)
+// 8이여서 3번 분할. log 2^3
+// 분할마다 합병할 때 O(n)번 비교한다. 합병의 마지막 단계를 보면 작은 값 선택 시 O(n) 비교 수행
+// 따라서 O(nlogn)
