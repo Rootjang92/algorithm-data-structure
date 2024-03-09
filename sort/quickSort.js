@@ -51,3 +51,5 @@ function quickSort(arr, left = 0, right = arr.length - 1) {
 
 console.log(quickSort([4,6,9,1,2,5,3]));
 
+// best, average - O(nlogn)
+// worst - O(n^2) - 완전 정렬된 경우 -> 이럴 경우 무작위 혹은 중간의 있는 값을 pivot으로 선택한다.
