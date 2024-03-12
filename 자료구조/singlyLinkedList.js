@@ -120,7 +120,7 @@ class SinglyLinkedList extends Node {
   get(index) {
     if (index < 0 || index >= this.length) return null;
     let counter = 0;
-    let current = this.head;
+    const current = this.head;
     while (counter !== index) {
       current = current.next;
       counter++;
@@ -139,6 +139,81 @@ class SinglyLinkedList extends Node {
     }
     return false;
   }
+
+  // index, value
+  // index가 0보다 작거나 리스트의 길이보다 클 경우 false
+  // index와 길이가 같을 경우 맨 마지막에 삽입 -> push
+  // 리스트 맨 앞 -> unshift
+  // get -> index - 1 호출
+  // 삽입 후 길이 1 증가
+  // return true
+  insert(index, val) {
+    const newNode = new Node(val);
+
+    if (index < 0 || index > this.length) return false;
+    if (index === this.length) return !!this.push(val);
+    if (index === 0) return !!this.unshift(val);
+    
+    const prev = this.get(index - 1);
+    const temp = prev.next;
+    prev.next = newNode;
+    newNode.next = temp;
+    this.length++;
+    return true;
+  }
+
+  // 리스트 중간에 있는 노드 제거
+  // 인덱스가 length - 1과 같을 경우 pop
+  // get(index - 1) -> .next를 이전 노드의 next로 설정함.
+  // 길이 감소
+  remove(index) {
+    if (index < 0 || index >= this.length) return undefined;
+    if (index === this.length - 1) return this.pop();
+    if (index === 0) return this.unshift();
+
+    const prev = this.get(index - 1);
+    const removed = prev.next;
+    prev.next = removed.next;
+    this.length--;
+    return removed;
+  }
+
+  // swap head and tail
+  // next value 선언
+  // prev value 선언
+  // current 변수를 선언하여 현재 해드값을 초기화시킴
+  // 반복문으로 현재 노드의 next를 node의 next.next로 설정하는 작업을 반복
+  // 현재 node의 next를 이전에 바로 앞에 있던 노드를 가리키도록 한다.
+  // 현재의 node를 prev에 저장하고 .next 값을 저장한다.\
+
+  print() {
+    const arr = [];
+    let current = this.head;
+
+    while (current) {
+      arr.push(current.val);
+      current = current.next;
+    }
+
+    console.log(arr);
+  }
+
+  reverse() {
+    let node = this.head;
+    this.head = this.tail;
+    this.tail = node;
+    let prev = null;
+    let next;
+    
+    for (let i = 0; i < this.length; i++) {
+      next = node.next;
+      node.next = prev;
+      prev = node;
+      node = next;
+    }
+
+    return this;
+  }
 }
 
 const list = new SinglyLinkedList();
@@ -146,9 +221,8 @@ const list = new SinglyLinkedList();
 list.push("Hello");
 list.push("Good bye");
 list.push("!");
-list.get(2);
-list.set(2, "?");
-list.set(0, "Bye");
+list.reverse();
+list.print();
 
 console.log(list);
 
