@@ -169,7 +169,7 @@ class SinglyLinkedList extends Node {
   remove(index) {
     if (index < 0 || index >= this.length) return undefined;
     if (index === this.length - 1) return this.pop();
-    if (index === 0) return this.unshift();
+    if (index === 0) return this.shift();
 
     const prev = this.get(index - 1);
     const removed = prev.next;
@@ -226,3 +226,5 @@ list.print();
 
 console.log(list);
 
+// insertion: O(1), removal: O(1) or O(N), search - O(N), access - O(n)
+// 삽입 삭제는 배열보다 유리하다.
