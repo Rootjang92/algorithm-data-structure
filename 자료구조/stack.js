@@ -71,3 +71,5 @@ stackVal.pop();
 
 
 console.log(stackVal);
+
+// insertion, removal : O(1) / searching, access - O(N)
