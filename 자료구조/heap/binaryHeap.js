@@ -38,9 +38,67 @@ class MaxBinaruHeap {
     this.values.push(value);
     this.bubbleUp();
   }
+
+  // root를 제대로 된 자리로 가져다 둔다.
+  // 루트 제거 -> 마지막 요소를 루트로 -> 올바른 힙이 아님
+  // maxtractMax로 자식과 비교
+  // 큰 값으로 루트 변경
+  // 변경된 자리에서 다시 자식과 비교하여 큰 값을 위로 올린다.
+
+  // 루트와 맨 마지막 값 변경하고 맨 마지막 값 삭제
+  // maxtractMax
+  sinkDown() {
+    let idx = 0;
+    const length = this.values.length;
+    const element = this.values[0];
+
+    while (true) {
+      let leftChildIdx = 2 * idx + 1;
+      let rightChildIdx = 2 * idx + 2;
+      let leftChild, rightChild;
+      let swap = null;
+
+      if (leftChildIdx < length) {
+        leftChild = this.values[leftChildIdx];
+
+        if (leftChild > element) {
+          swap = leftChildIdx;
+        }
+      }
+
+      if (rightChildIdx < length) {
+        rightChild = this.values[rightChildIdx];
+
+        if ((swap === null && rightChild > element) || (swap !== null && rightChild > leftChild)) {
+          swap = rightChildIdx;
+        }
+      }
+
+      if (swap === null) break;
+
+      this.values[idx] = this.values[swap];
+      this.values[swap] = element;
+      idx = swap;
+    }
+  }
+
+  extractMax() {
+    const max = this.values[0];
+    const end = this.values.pop();
+    if (this.values.length > 0) {
+      this.values[0] = end;
+      this.sinkDown();
+    }
+
+    return max;
+  }
 }
 
 const maxBinaryHeap = new MaxBinaruHeap();
 
 maxBinaryHeap.insert(55);
+maxBinaryHeap.extractMax();
+maxBinaryHeap.extractMax();
+maxBinaryHeap.extractMax();
+
 console.log(maxBinaryHeap);
