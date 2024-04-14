@@ -102,3 +102,8 @@ maxBinaryHeap.extractMax();
 maxBinaryHeap.extractMax();
 
 console.log(maxBinaryHeap);
+
+// log N
+// search - O(N)
+// 내려갈 때마다 2배의 노드가 생김. -> 그러나 과정에서는 한줄에 한 번만 비교하면 됨.
+// 우선순위 큐같은 데이터 구조를 다룰 때 유리함.
