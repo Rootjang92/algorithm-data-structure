@@ -46,8 +46,6 @@ function binarySearch2(arr, val) {
   let end = arr.length - 1;
   let mid = Math.floor((start + end) / 2); // 중간 평균값
 
-  
-
   while (arr[mid] !== val && start <= end) {
     if (arr[mid] > val) {
       end = mid - 1;
